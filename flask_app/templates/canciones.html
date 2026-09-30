@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Canciones</title>
+</head>
+<body>
+    <h1>Nueva Canción</h1>
+
+    <form method="post" action="/guardar_cancion">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        <br>
+        <label for="artista">Artista:</label>
+        <input type="text" id="artista" name="artista" required>
+        <br>
+        <input type="submit" value="Crear">
+    </form>
+   
+
+    <h1>Todas las Canciones</h1>
+    
+    <ul>
+        {% for cancion in canciones %}
+        <li><a href="/canciones/{{ cancion.id }}">{{ cancion.titulo }}</a></li> 
+        {% endfor %}
+    </ul>
+    <a href="/usuarios">inicio</a>
+
+   
+
+</body>
+</html>

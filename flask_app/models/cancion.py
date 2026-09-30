@@ -22,3 +22,8 @@ class Cancion:
         query = "INSERT INTO canciones (titulo, artista, created_at, updated_at) VALUES (%(titulo)s, %(artista)s, NOW(), NOW());"
         return connectToMySQL('esquema_canciones').query_db(query, data)
 
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM canciones WHERE id = %(id)s;"
+        results = connectToMySQL('esquema_canciones').query_db(query, data)
+        return cls(results[0]) if results else None

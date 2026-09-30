@@ -4,35 +4,30 @@ from flask import render_template,redirect,request,session,flash
 
 
 #importamos la clase que estamos controlando
-from flask_app.models.cancion import Cancion
 from flask_app.models.usuario import Usuario
 
+@app.route("/")
+def inicio():
+    return redirect("/usuarios")
 
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/usuarios", methods=["GET"])
 def registro():
     usuarios = Usuario.get_all()
-    print(usuarios)
-    return render_template("usuarios.html")
+    return render_template("usuarios.html", usuarios = usuarios)
 
 @app.route('/guardar', methods=["POST"])
 def guardar():
     datos = {
-        "titulo": request.form['nombre'],
-        "artista": request.form['apellido']}
-    Cancion.save(datos)
-    return redirect("/nueva_cancion")
-
-
-@app.route("/nueva_cancion")
-def mostrar_canciones():
-    canciones = Cancion.get_all()
-    return render_template("cancione.html", canciones=canciones)
-
-@app.route("/ver_cancion/<int:id>")
-def ver_cancion(id):
-    datos = {
-        "id": id
+        "nombre": request.form['nombre'],
+        "gmail": request.form['gmail'],
+        "password": request.form['password']
     }
-    canción = Cancion.obtener_uno(datos)
-    return render_template("informacion_cancion.html", canción=canción)
+    Usuario.save(datos)
+    return redirect("/usuarios")
+
+@app.route("/usuarios/<int:id>")
+def mostrar_usuario(id):
+    datos = {
+        "id": id}
+    usuario = Usuario.get_one(datos)
+    return render_template("mostrar_usuario.html", usuario = usuario)

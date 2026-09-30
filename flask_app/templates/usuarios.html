@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+</head>
+<body>
+    <h1>Nuevo Usuario</h1>
+
+    <form method="post" action="/guardar">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br>
+        <label for="gmail">Gmail:</label>
+        <input type="email" id="gmail" name="gmail" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Crear">
+    </form>
+   
+
+    <h1>Todos los Usuarios</h1>
+    
+    <ul>
+        {% for usuario in usuarios %}
+        <li><a href="/usuarios/{{ usuario.id }}">{{ usuario.nombre }}</a></li> 
+        {% endfor %}
+    </ul>
+    <a href="/canciones">Agregar Canción</a>
+
+   
+
+</body>
+</html>
