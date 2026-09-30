@@ -27,7 +27,7 @@ def guardar():
 @app.route("/nueva_cancion")
 def mostrar_canciones():
     canciones = Cancion.get_all()
-    return render_template("canciones.html", canciones=canciones)
+    return render_template("cancione.html", canciones=canciones)
 
 @app.route("/ver_cancion/<int:id>")
 def ver_cancion(id):
