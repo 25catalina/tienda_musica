@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Cancion</title>
+</head>
+
+<body>
+    <h1>{{ cancion.titulo }}</h1>
+    <h2>{{ cancion.artista }}</h2>
+
+    <h3>En los favoritos de:</h3>
+
+    <ul>
+        {% for fan in fans %}
+        <li>{{ fan.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Agregar Favorito</h3>
+
+    <form method="post" action="/guardar_favorito_cancion">
+        <input type="hidden" name="cancion_id" value="{{ cancion.id }}">
+        <label for="usuario_id">Usuario:</label>
+        <select name="usuario_id">
+            {% for usuario in usuarios %}
+            <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Agregar">
+    </form>
+    <a href="/usuarios">Inicio</a>
+</body>
+
+</html>

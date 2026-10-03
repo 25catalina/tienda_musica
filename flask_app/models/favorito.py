@@ -1,5 +1,4 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.controllers import favoritos
 
 class Favorito:
     def __init__(self, data):

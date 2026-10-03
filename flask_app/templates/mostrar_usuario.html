@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Mostrar Usuario</title>
 </head>
+
 <body>
     {% if usuario %}
     <h1>{{ usuario.nombre }}</h1>
@@ -18,10 +20,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for favorito in usuario.favoritos %}
+            {% for cancion in favoritas %}
             <tr>
-                <td>{{ favorito.cancion.titulo }}</td>
-                <td>{{ favorito.cancion.artista }}</td>
+                <td>{{ cancion.titulo }}</td>
+                <td>{{ cancion.artista }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -42,4 +44,5 @@
 
     <a href="/usuarios">inicio</a>
 </body>
+
 </html>
